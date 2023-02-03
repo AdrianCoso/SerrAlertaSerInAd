@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Portada</string>
+    <string name="mis_botones">Mis botones</string>
+    <string name="otras">Otras configuraciones</string>
+    <string name="titulo">SerrAlerta</string>
+    <string name="numero">Número</string>
+    <string name="crear_boton">Crear botón</string>
+    <string name="seleccion_boton">Selecciona un botón</string>
+    <string name="seleccion_audio">Audio de alerta</string>
+    <string name="seleccion_color_alerta">Color de fondo</string>
+    <string name="btn_seleccion_audio">Seleccionar audio</string>
+    <string name="btn_seleccion_color">Elegir color</string>
+    <string name="selecciona_picto">Pictograma de alerta</string>
+    <string name="selecciona_pictograma">Selecciona un pictograma</string>
+    <string name="texto_alerta">Texto de alerta</string>
+    <string name="lblSpinnerBotones">Selecciona un botón para asignar la alerta</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
+</resources>
