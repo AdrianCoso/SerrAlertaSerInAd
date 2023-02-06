@@ -154,11 +154,11 @@ public class EditarCrearBoton extends AppCompatActivity {
             public void onClick(View v) {
 
                 DbBotones dbBotones = new DbBotones(EditarCrearBoton.this);
-                long id = dbBotones.insertarBoton(botonSelecciondo, etTextoAlerta.getText().toString(), 3445 , "img", "sonido");
+                long id = dbBotones.insertarBoton(botonSeleccionado, etTextoAlerta.getText().toString(), 3445 , "img", "sonido");
 
                 if(id  > 0){
                     Toast.makeText(EditarCrearBoton.this, "registro añadido", Toast.LENGTH_LONG).show();
-git
+
                 }
             }
         });
