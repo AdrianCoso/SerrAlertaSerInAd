@@ -23,14 +23,11 @@ public class MisBotones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mis_botones);
 
-        /*dbBotones db = new dbBotones(getApplicationContext());
+        dbBotones db = new dbBotones(MisBotones.this);
 
-        alertas = db.mostrarBotones();*/
+        alertas = db.mostrarBotones();
 
-        Botones boton_comer = new Botones(1, "comer", 0x57730A, "comer.jpg", "activado");
-        Botones boton_jugar = new Botones(2, "jugar", 0x2FA59F, "jugar.jpg", "desactivado");
-        alertas.add(boton_comer);
-        alertas.add(boton_jugar);
+
         lista = findViewById(R.id.lvLista);
         lista.setAdapter(new Adaptador(this, alertas));
     }

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -20,6 +21,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.portada.db.dbBotones;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -39,12 +43,14 @@ public class EditarCrearBoton extends AppCompatActivity {
     private Button btnCancelar;
     private Button btnGuardar;
 
+
     //Datos para guardar
-    int botonSelecciondo;
+    int botonSeleccionado;
     String textoAlerta;
     Uri uriTonoSeleccionado;
     int colorSeleccionado;
     Uri uriImagenSeleccionada;
+    Ringtone tonoSeleccionado;
 
 
 
@@ -62,7 +68,7 @@ public class EditarCrearBoton extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //TODO asignar botón seleccionado
-                botonSelecciondo = botones[position];
+                botonSeleccionado = botones[position];
             }
 
             @Override
@@ -95,11 +101,13 @@ public class EditarCrearBoton extends AppCompatActivity {
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             Intent data = result.getData();
-                            if (Build.VERSION.SDK_INT >= 33) {
+                            //if (Build.VERSION.SDK_INT >= 33) {
                                 uriTonoSeleccionado = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-                            }
-                            String stringTono = uriTonoSeleccionado.toString().split("=")[1];
-                            nombreTono.setText(stringTono);
+                                String stringTono =  RingtoneManager.getRingtone(EditarCrearBoton.this, uriTonoSeleccionado).getTitle(EditarCrearBoton.this);
+                                nombreTono.setText(stringTono);
+
+                            //}
+
 
                         }
                     }
@@ -141,7 +149,11 @@ public class EditarCrearBoton extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Guardar en la base de datos los datos del formulario
+                dbBotones db = new dbBotones(EditarCrearBoton.this);
+                long id = db.insertarBoton(1, "comer", 0x57730A, "comer.jpg", "sonido.wav");
+                if (id > 0) {
+                    Toast.makeText(EditarCrearBoton.this, "Botón añadido", Toast.LENGTH_LONG).show();
+                }
             }
         });
 

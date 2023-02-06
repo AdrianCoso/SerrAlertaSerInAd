@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="@string/seleccion_boton"
             android:textAlignment="center"
@@ -28,6 +29,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_weight="1"
             android:contentDescription="@string/lblSpinnerBotones" />
 
     </LinearLayout>
@@ -77,13 +79,15 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="TextView" />
 
         <Button
             android:id="@+id/btnSeleccionAudio"
-            android:layout_width="wrap_content"
+            android:layout_width="173dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:layout_weight="1"
             android:text="@string/btn_seleccion_audio" />
     </LinearLayout>
 
@@ -94,10 +98,11 @@
 
         <TextView
             android:id="@+id/tvColorFondo"
-            android:layout_width="wrap_content"
+            android:layout_width="54dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
+            android:layout_weight="1"
             android:text="@string/seleccion_color_alerta"
             android:textStyle="bold" />
 

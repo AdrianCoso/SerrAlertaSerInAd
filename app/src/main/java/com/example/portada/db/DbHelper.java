@@ -45,15 +45,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 "audio TEXT NOT NULL,"+
                 "activado TEXT)");
 
-        //Insertar datos de prueba
-        mockBoton(sqLiteDatabase, new Botones(1, "comer", 0, "comer.jpg", "activado"));
-        mockBoton(sqLiteDatabase, new Botones(2, "jugar", 255, "jugar.jpg", "desactivado"));
-    }
-
-    private long mockBoton(SQLiteDatabase db, Botones botones) {
-        return db.insert(TABLE_BOTONES, null, botones.toContentValues());
 
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
