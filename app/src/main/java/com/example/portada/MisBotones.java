@@ -21,12 +21,7 @@ public class MisBotones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mis_botones);
 
-<<<<<<< HEAD
-        dbBotones db = new dbBotones(MisBotones.this);
 
-        alertas = db.mostrarBotones();
-
-=======
         DbBotones db = new DbBotones(MisBotones.this);
 
         alertas = db.mostrarBotones();
@@ -37,7 +32,6 @@ public class MisBotones extends AppCompatActivity {
         for(Botones boton: alertas){
             Toast.makeText(MisBotones.this, "holaaaa", Toast.LENGTH_LONG).show();
         }
->>>>>>> 22abec29ec813761c2de191b1d3eac35fafa8436
 
         lista = findViewById(R.id.lvLista);
         lista.setAdapter(new Adaptador(this, alertas));
