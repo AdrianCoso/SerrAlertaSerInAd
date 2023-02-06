@@ -6,16 +6,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 
 import com.example.portada.entidades.Botones;
 
 import java.util.ArrayList;
 
-public class dbBotones extends DbHelper{
+public class DbBotones extends DbHelper{
 
     Context context;
-    public dbBotones(@Nullable Context context) {
+    public DbBotones(@Nullable Context context) {
         super(context);
         this.context = context;
     }
@@ -81,6 +80,7 @@ public class dbBotones extends DbHelper{
                 boton.setImagen(cursorBotones.getString(4));
                 boton.setAudio(cursorBotones.getString(5));
                 boton.setActivado(cursorBotones.getString(6));
+                listaBotones.add(boton);
             }while(cursorBotones.moveToNext());
         }
 

@@ -20,6 +20,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.portada.db.DbBotones;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -136,12 +139,18 @@ public class EditarCrearBoton extends AppCompatActivity {
             }
         });
 
+        etTextoAlerta = findViewById(R.id.editTextTextoAlerta);
         //Crear funcionalidad para botón guardar
         btnGuardar = findViewById(R.id.btnGuardar);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Guardar en la base de datos los datos del formulario
+                DbBotones dbBotones = new DbBotones(EditarCrearBoton.this);
+                long id = dbBotones.insertarBoton(botonSelecciondo, etTextoAlerta.getText().toString(), 3445 , "img", "sonido");
+
+                if(id  > 0){
+                    Toast.makeText(EditarCrearBoton.this, "registro añadido", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
