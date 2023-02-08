@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 
+import com.example.portada.db.DbBotones;
 import com.example.portada.entidades.Botones;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -63,7 +65,15 @@ public class Adaptador extends BaseAdapter {
         imagen.setImageResource(idImagen);
 
         color.setCardBackgroundColor(datos.get(i).getColor());
-        cambio.setChecked(datos.get(i).getActivado() == "activado");
+        cambio.setChecked(datos.get(i).getActivado().equals("activado"));
+        cambio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                DbBotones db = new DbBotones(parent.getContext());
+
+                db.switchBoton(datos.get(i).getId_boton(), isChecked);
+            }
+        });
 
         fabEditar.setOnClickListener(new View.OnClickListener() {
             @Override

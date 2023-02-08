@@ -132,14 +132,18 @@ public class DbBotones extends DbHelper{
         return correcto;
     }
 
-    public boolean desactivarBoton(int id){
+    public boolean switchBoton(int id, boolean activado){
         boolean correcto = false;
 
         DbHelper dbHelper =  new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try{
-            db.execSQL("UPDATE "+ TABLE_BOTONES+" SET activado = 'False' WHERE id = "+id);
+            if (activado) {
+                db.execSQL("UPDATE "+ TABLE_BOTONES+" SET activado = 'activado' WHERE id_boton = "+id);
+            } else {
+                db.execSQL("UPDATE "+ TABLE_BOTONES+" SET activado = 'desactivado' WHERE id_boton = "+id);
+            }
             correcto = true;
         } catch (Exception ex){
             ex.toString();
@@ -150,6 +154,5 @@ public class DbBotones extends DbHelper{
 
         return correcto;
     }
-
 
 }
