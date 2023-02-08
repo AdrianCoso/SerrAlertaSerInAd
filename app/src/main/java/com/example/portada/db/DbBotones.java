@@ -52,7 +52,7 @@ public class DbBotones extends DbHelper{
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try{
-            db.execSQL("DELETE FROM "+TABLE_BOTONES+ " WHERE id = '"+id+"'");
+            db.execSQL("DELETE FROM "+TABLE_BOTONES+ " WHERE id_boton = '"+id+"'");
             correcto = true;
         } catch (Exception ex){
             ex.toString();

@@ -104,18 +104,20 @@ public class EditarCrearBoton extends AppCompatActivity {
             botonCreado = db.mostrarBoton(idBoton);
 
         } else { // Si no creamos un botón generico
-            botonSeleccionado = 1;
-            textoAlerta = "Alerta";
-            colorSeleccionado = Color.CYAN;
-            idImagenSeleccionada = R.drawable.imagen1_nueva;
-            rutaTonoSeleccionado = RingtoneManager.getActualDefaultRingtoneUri(EditarCrearBoton.this, RingtoneManager.TYPE_ALARM).toString();
             botonCreado = new Botones(1,
                     "Alerta",
                     Color.CYAN,
-                    idImagenSeleccionada,
-                    rutaTonoSeleccionado,
+                    R.drawable.imagen1_nueva,
+                    RingtoneManager.getActualDefaultRingtoneUri(EditarCrearBoton.this, RingtoneManager.TYPE_ALARM).toString(),
                     "activado");
         }
+
+        //Inicializar las variables que usaremos para guardar el botón
+        botonSeleccionado = botonCreado.getNumero();
+        textoAlerta = botonCreado.getTexto();
+        colorSeleccionado = botonCreado.getColor();
+        idImagenSeleccionada = botonCreado.getImagen();
+        rutaTonoSeleccionado = botonCreado.getAudio();
 
         // Inicializar los controles;
         Integer[] botones = {1, 2, 3, 4}; // Inicializamos los valores del spinner
@@ -125,7 +127,7 @@ public class EditarCrearBoton extends AppCompatActivity {
         etTextoAlerta.setText(botonCreado.getTexto());
         colorDefecto = botonCreado.getColor();
         vistaPreviaColor.setBackgroundColor(botonCreado.getColor());
-        //vistaPreviaPictoGrama.setImageURI(Uri.parse(botonCreado.getImagen()));
+        vistaPreviaPictoGrama.setImageResource(botonCreado.getImagen());
         nombreTono.setText(RingtoneManager.getRingtone(EditarCrearBoton.this, Uri.parse(botonCreado.getAudio())).getTitle(EditarCrearBoton.this));
         if (idBoton == -1) { // Si el botón existe mostrar la opción de eliminarlo
             btnEliminar.setVisibility(View.INVISIBLE);
@@ -143,7 +145,6 @@ public class EditarCrearBoton extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                botonSeleccionado = 1;
 
             }
         });
@@ -232,6 +233,7 @@ public class EditarCrearBoton extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EditarCrearBoton.this, MisBotones.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 
