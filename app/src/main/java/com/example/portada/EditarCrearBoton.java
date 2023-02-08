@@ -37,6 +37,7 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class EditarCrearBoton extends AppCompatActivity {
 
+    private DbBotones db;
     private int colorDefecto;
     private View vistaPreviaColor;
     private TextView nombreTono;
@@ -59,9 +60,9 @@ public class EditarCrearBoton extends AppCompatActivity {
     int idBoton;
     int botonSeleccionado;
     String textoAlerta;
-    Uri uriTonoSeleccionado;
+    String rutaTonoSeleccionado;
     int colorSeleccionado;
-    Uri uriImagenSeleccionada;
+    int idImagenSeleccionada;
     Ringtone tonoSeleccionado;
 
 
@@ -69,6 +70,9 @@ public class EditarCrearBoton extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_crear_boton);
+
+        //Abrir la base de datos
+        db = new DbBotones(EditarCrearBoton.this);
 
         //Declarar vistas
         spinner = findViewById(R.id.spinnerBotones); //Spinner selección boton
@@ -91,6 +95,8 @@ public class EditarCrearBoton extends AppCompatActivity {
 
         btnEliminar = findViewById(R.id.btnEliminar); // Botón para eliminar los datos del botón seleccionado
 
+        btnCancelar = findViewById(R.id.btnCancelar); // Botón volver al listado sin guardar nada
+
         // Recoger el id del botón si es que hemos llegado a través de un elemento del listado.
         idBoton = getIntent().getIntExtra("idBoton", -1);
         if (idBoton != -1){ // Si recogemos un id seleccionamos el botón correspondiente y visibilizamos el botón para eliminiarlo
@@ -98,11 +104,16 @@ public class EditarCrearBoton extends AppCompatActivity {
             botonCreado = db.mostrarBoton(idBoton);
 
         } else { // Si no creamos un botón generico
+            botonSeleccionado = 1;
+            textoAlerta = "Alerta";
+            colorSeleccionado = Color.CYAN;
+            idImagenSeleccionada = R.drawable.imagen1_nueva;
+            rutaTonoSeleccionado = RingtoneManager.getActualDefaultRingtoneUri(EditarCrearBoton.this, RingtoneManager.TYPE_ALARM).toString();
             botonCreado = new Botones(1,
                     "Alerta",
                     Color.CYAN,
-                    "",
-                    RingtoneManager.getRingtone(EditarCrearBoton.this, RingtoneManager.getActualDefaultRingtoneUri(EditarCrearBoton.this, RingtoneManager.TYPE_ALARM)).getTitle(EditarCrearBoton.this),
+                    idImagenSeleccionada,
+                    rutaTonoSeleccionado,
                     "activado");
         }
 
@@ -132,6 +143,7 @@ public class EditarCrearBoton extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                botonSeleccionado = 1;
 
             }
         });
@@ -140,10 +152,6 @@ public class EditarCrearBoton extends AppCompatActivity {
         btnSeleccionColor.setOnClickListener(v -> abrirSelectorColor());
 
         //Crear la selección del audio de alerta
-        if (idBoton != -1) {
-        } else {
-            nombreTono.setText("Tono por defecto");
-        }
         lanzadorSelectorTonos = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -152,7 +160,8 @@ public class EditarCrearBoton extends AppCompatActivity {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             Intent data = result.getData();
                             //if (Build.VERSION.SDK_INT >= 33) {
-                                uriTonoSeleccionado = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+                                Uri uriTonoSeleccionado = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+                                rutaTonoSeleccionado = uriTonoSeleccionado.toString();
                                 String stringTono =  RingtoneManager.getRingtone(EditarCrearBoton.this, uriTonoSeleccionado).getTitle(EditarCrearBoton.this);
                                 nombreTono.setText(stringTono);
 
@@ -176,11 +185,11 @@ public class EditarCrearBoton extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK){
                         Intent data = result.getData();
                         //Realizamos la operación de cargar la imagen
-                        uriImagenSeleccionada = data.getData();
+                        idImagenSeleccionada = data.getIntExtra("idImagen", R.drawable.imagen1_nueva);
                         //getContentResolver().takePersistableUriPermission(uriImagenSeleccionada, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
 
-                        vistaPreviaPictoGrama.setImageURI(uriImagenSeleccionada);
+                        vistaPreviaPictoGrama.setImageResource(idImagenSeleccionada);
 
                     }
                 }
@@ -207,10 +216,9 @@ public class EditarCrearBoton extends AppCompatActivity {
         btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DbBotones db = new DbBotones(EditarCrearBoton.this);
                 boolean correcto = db.eliminarBoton(idBoton);
                 if (correcto) {
-                    Intent intent = new Intent(EditarCrearBoton.this, MisBotones.class);
+                    Intent intent = new Intent(EditarCrearBoton.this, MisBotones.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
 
                 } else {
@@ -219,37 +227,39 @@ public class EditarCrearBoton extends AppCompatActivity {
             }
         });
 
+        // Crear funcionalidad para botón cancelar
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditarCrearBoton.this, MisBotones.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            }
+        });
+
     }
 
     private void guardarBoton() {
-        DbBotones dbBotones = new DbBotones(EditarCrearBoton.this);
+
         long id = -1;
         if (idBoton == -1) {
-            id = dbBotones.insertarBoton(botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto , uriImagenSeleccionada.toString(), uriTonoSeleccionado.toString());
+            id = db.insertarBoton(botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto , idImagenSeleccionada, rutaTonoSeleccionado.toString());
         } else {
-            id = dbBotones.editarBoton(idBoton, botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto, uriImagenSeleccionada.toString(), uriTonoSeleccionado.toString());
+            id = db.editarBoton(idBoton, botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto, idImagenSeleccionada, rutaTonoSeleccionado.toString());
         }
 
         if(id > 0 ){
             Toast.makeText(EditarCrearBoton.this, "registro añadido", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(EditarCrearBoton.this, MisBotones.class);
+            Intent intent = new Intent(EditarCrearBoton.this, MisBotones.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
 
         }
     }
 
-    //Creamos el lanzamiento de la actividad
+
 
     private void abrirSelectorImagen() {
 
         //Creamos un intent de tipo imagen
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
-        i.addCategory(Intent.CATEGORY_OPENABLE);
-        //i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        //i.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        //i.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+        Intent i = new Intent(EditarCrearBoton.this, SelectorImagenes.class);
 
 
         lanzadorSelectorFotos.launch(i);
