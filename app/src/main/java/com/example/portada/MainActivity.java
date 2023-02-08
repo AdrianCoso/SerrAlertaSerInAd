@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void procesarEvento(int opc){
        switch(opc){
            case R.id.button:  startActivity(new Intent(MainActivity.this,MisBotones.class)); break;
-           case R.id.button_2: startActivity(new Intent(MainActivity.this,EditarCrearBoton.class)); break; //TODO sacar edicion de botones desde el listado
+           case R.id.button_2: startActivity(new Intent(MainActivity.this,OtrasConfiguraciones.class)); break;
 
        }
     }

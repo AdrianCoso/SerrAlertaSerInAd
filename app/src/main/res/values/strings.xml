@@ -19,4 +19,5 @@
     <string name="descripccion_fab_add_boton">Añadir nuevo botón</string>
     <string name="fondo">Fondo</string>
     <string name="eliminar_boton">Eliminar Botón</string>
+    <string name="toca_imagen_para_seleccionar">Toca una imagen para seleccionarla</string>
 </resources>
