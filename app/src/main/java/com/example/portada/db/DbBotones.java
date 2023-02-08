@@ -1,9 +1,13 @@
 package com.example.portada.db;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQuery;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -31,7 +35,7 @@ public class DbBotones extends DbHelper{
             values.put("color",color);
             values.put("imagen",imagen);
             values.put("audio",audio);
-            values.put("activado", "True");
+            values.put("activado", "activado");
 
             id = db.insert(TABLE_BOTONES, null, values);
         } catch (Exception ex) {
@@ -89,18 +93,38 @@ public class DbBotones extends DbHelper{
         return listaBotones;
     }
 
-    public boolean editarBoton(int id, int numero, String texto, int color, String imagen, String audio){
-        boolean correcto = false;
+    public Botones mostrarBoton(int id){
+        DbHelper dbHelper =  new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Botones boton = new Botones();
+        Cursor cursorBotones = null;
+        cursorBotones = db.rawQuery("SELECT * FROM " + TABLE_BOTONES + " WHERE id_boton="+ id, null);
+        if (cursorBotones.moveToFirst()){
+            boton.setId_boton(cursorBotones.getInt(0));
+            boton.setNumero(cursorBotones.getInt(1));
+            boton.setTexto(cursorBotones.getString(2));
+            boton.setColor(cursorBotones.getInt(3));
+            boton.setImagen(cursorBotones.getString(4));
+            boton.setAudio(cursorBotones.getString(5));
+            boton.setActivado(cursorBotones.getString(6));
+
+        }
+        cursorBotones.close();
+        return boton;
+    }
+
+    public int editarBoton(int id, int numero, String texto, int color, String imagen, String audio){
+        int correcto = -1;
 
         DbHelper dbHelper =  new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try{
-            db.execSQL("UPDATE "+TABLE_BOTONES+" SET numero = '"+ numero+"', texto = '"+texto+"', color = '"+color+"', imagen = '"+imagen+"', audio = '"+audio+"'");
-            correcto = true;
+            db.execSQL("UPDATE "+TABLE_BOTONES+" SET numero = '"+ numero+"', texto = '"+texto+"', color = '"+color+"', imagen = '"+imagen+"', audio = '"+audio+"' WHERE id_boton = "+id);
+            correcto = 1;
         } catch (Exception ex){
             ex.toString();
-            correcto = false;
+            correcto = -1;
         } finally {
             db.close();
         }

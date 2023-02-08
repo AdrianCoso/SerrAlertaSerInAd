@@ -1,5 +1,7 @@
 package com.example.portada;
 
+import static java.security.AccessController.getContext;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -8,11 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,7 +28,10 @@ import android.widget.Toast;
 
 
 import com.example.portada.db.DbBotones;
+import com.example.portada.entidades.Botones;
 
+
+import java.util.Arrays;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -40,13 +46,17 @@ public class EditarCrearBoton extends AppCompatActivity {
     private Button btnSeleccionPicto;
     private Spinner spinner;
     private ImageView vistaPreviaPictoGrama;
-    private ActivityResultLauncher<Intent> lanzarSelectorFotos;
-    private ActivityResultLauncher<Intent> lanzarSelectorTonos;
+    private ActivityResultLauncher<Intent> lanzadorSelectorFotos;
+    private ActivityResultLauncher<Intent> lanzadorSelectorTonos;
     private Button btnCancelar;
     private Button btnGuardar;
+    private Button btnEliminar;
 
+    //Boton para crear o editar
+    Botones botonCreado;
 
     //Datos para guardar
+    int idBoton;
     int botonSeleccionado;
     String textoAlerta;
     Uri uriTonoSeleccionado;
@@ -55,18 +65,65 @@ public class EditarCrearBoton extends AppCompatActivity {
     Ringtone tonoSeleccionado;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_crear_boton);
 
-        //Crear el spinner para seleccionar uno de los cuatro botones
-        spinner = findViewById(R.id.spinnerBotones);
-        Integer[] botones = {1, 2, 3, 4};
+        //Declarar vistas
+        spinner = findViewById(R.id.spinnerBotones); //Spinner selección boton
+
+        etTextoAlerta = findViewById(R.id.editTextTextoAlerta); //EditText para editar el texto que se mostrará
+
+        vistaPreviaColor = findViewById(R.id.vistaPreviaColor); //Cuadro donde veremos el color seleccionado
+
+        btnSeleccionColor = findViewById(R.id.btnSeleccionColor); //Botón que nos llevará al selector de colores
+
+        nombreTono = findViewById(R.id.tvNombreTono); // Texto donde veremos el nombre del tono seleccionado
+
+        btnSeleccionPicto = findViewById(R.id.btnSeleccionPicto); // Botón que nos llevará a la selección de imágenes
+
+        vistaPreviaPictoGrama = findViewById(R.id.vistaPreviaPicto); // Cuadro donde veremos una miniatura de la imagen seleccionada
+
+        btnSeleccionAudio = findViewById(R.id.btnSeleccionAudio); // Botón que nos llevará a la selección de sonidos del teléfono
+
+        btnGuardar = findViewById(R.id.btnGuardar); //Botón para guardar los datos y volver a la lista de botones
+
+        btnEliminar = findViewById(R.id.btnEliminar); // Botón para eliminar los datos del botón seleccionado
+
+        // Recoger el id del botón si es que hemos llegado a través de un elemento del listado.
+        idBoton = getIntent().getIntExtra("idBoton", -1);
+        if (idBoton != -1){ // Si recogemos un id seleccionamos el botón correspondiente y visibilizamos el botón para eliminiarlo
+            DbBotones db = new DbBotones(EditarCrearBoton.this);
+            botonCreado = db.mostrarBoton(idBoton);
+
+        } else { // Si no creamos un botón generico
+            botonCreado = new Botones(1,
+                    "Alerta",
+                    Color.CYAN,
+                    "",
+                    RingtoneManager.getRingtone(EditarCrearBoton.this, RingtoneManager.getActualDefaultRingtoneUri(EditarCrearBoton.this, RingtoneManager.TYPE_ALARM)).getTitle(EditarCrearBoton.this),
+                    "activado");
+        }
+
+        // Inicializar los controles;
+        Integer[] botones = {1, 2, 3, 4}; // Inicializamos los valores del spinner
         ArrayAdapter<Integer> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, botones);
         spinner.setAdapter(arrayAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setSelection(Arrays.asList(botones).indexOf(botonCreado.getNumero()));
+        etTextoAlerta.setText(botonCreado.getTexto());
+        colorDefecto = botonCreado.getColor();
+        vistaPreviaColor.setBackgroundColor(botonCreado.getColor());
+        //vistaPreviaPictoGrama.setImageURI(Uri.parse(botonCreado.getImagen()));
+        nombreTono.setText(RingtoneManager.getRingtone(EditarCrearBoton.this, Uri.parse(botonCreado.getAudio())).getTitle(EditarCrearBoton.this));
+        if (idBoton == -1) { // Si el botón existe mostrar la opción de eliminarlo
+            btnEliminar.setVisibility(View.INVISIBLE);
+        } else {
+            btnEliminar.setVisibility(View.VISIBLE);
+        }
+
+        //Crear eventos
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { // Selección del número de botón
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //TODO asignar botón seleccionado
@@ -80,23 +137,14 @@ public class EditarCrearBoton extends AppCompatActivity {
         });
 
         //Crear la seleccion del color de fondo
-        btnSeleccionColor = findViewById(R.id.btnSeleccionColor);
-        vistaPreviaColor = findViewById(R.id.vistaPreviaColor);
-
-        colorDefecto = 0;
-
-        btnSeleccionColor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Añadimos la funcionalidad de seleccionar el color en otro método para mayor claridad
-                abrirSelectorColor();
-            }
-        });
+        btnSeleccionColor.setOnClickListener(v -> abrirSelectorColor());
 
         //Crear la selección del audio de alerta
-        nombreTono = findViewById(R.id.tvNombreTono);
-        nombreTono.setText("Tono por defecto");
-        lanzarSelectorTonos = registerForActivityResult(
+        if (idBoton != -1) {
+        } else {
+            nombreTono.setText("Tono por defecto");
+        }
+        lanzadorSelectorTonos = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -110,12 +158,10 @@ public class EditarCrearBoton extends AppCompatActivity {
 
                             //}
 
-
                         }
                     }
                 }
         );
-        btnSeleccionAudio = findViewById(R.id.btnSeleccionAudio);
         btnSeleccionAudio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,15 +170,16 @@ public class EditarCrearBoton extends AppCompatActivity {
         });
 
         //Crear la selección del pictograma
-        vistaPreviaPictoGrama = findViewById(R.id.vistaPreviaPicto);
-        btnSeleccionPicto = findViewById(R.id.btnSeleccionPicto);
-        lanzarSelectorFotos = registerForActivityResult(
+        lanzadorSelectorFotos = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK){
                         Intent data = result.getData();
                         //Realizamos la operación de cargar la imagen
                         uriImagenSeleccionada = data.getData();
+                        //getContentResolver().takePersistableUriPermission(uriImagenSeleccionada, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+
                         vistaPreviaPictoGrama.setImageURI(uriImagenSeleccionada);
 
                     }
@@ -146,23 +193,49 @@ public class EditarCrearBoton extends AppCompatActivity {
             }
         });
 
-        etTextoAlerta = findViewById(R.id.editTextTextoAlerta);
+
         //Crear funcionalidad para botón guardar
-        btnGuardar = findViewById(R.id.btnGuardar);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                DbBotones dbBotones = new DbBotones(EditarCrearBoton.this);
-                long id = dbBotones.insertarBoton(botonSeleccionado, etTextoAlerta.getText().toString(), 3445 , "img", "sonido");
+                guardarBoton();
+            }
+        });
 
-                if(id  > 0){
-                    Toast.makeText(EditarCrearBoton.this, "registro añadido", Toast.LENGTH_LONG).show();
+        //Crear funcionalidad para botón eliminar
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DbBotones db = new DbBotones(EditarCrearBoton.this);
+                boolean correcto = db.eliminarBoton(idBoton);
+                if (correcto) {
+                    Intent intent = new Intent(EditarCrearBoton.this, MisBotones.class);
+                    startActivity(intent);
 
+                } else {
+                    Toast.makeText(EditarCrearBoton.this, "No se puede eliminar", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
+    }
+
+    private void guardarBoton() {
+        DbBotones dbBotones = new DbBotones(EditarCrearBoton.this);
+        long id = -1;
+        if (idBoton == -1) {
+            id = dbBotones.insertarBoton(botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto , uriImagenSeleccionada.toString(), uriTonoSeleccionado.toString());
+        } else {
+            id = dbBotones.editarBoton(idBoton, botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto, uriImagenSeleccionada.toString(), uriTonoSeleccionado.toString());
+        }
+
+        if(id > 0 ){
+            Toast.makeText(EditarCrearBoton.this, "registro añadido", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(EditarCrearBoton.this, MisBotones.class);
+            startActivity(intent);
+
+        }
     }
 
     //Creamos el lanzamiento de la actividad
@@ -173,19 +246,24 @@ public class EditarCrearBoton extends AppCompatActivity {
         Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
+        i.addCategory(Intent.CATEGORY_OPENABLE);
+        //i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        //i.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        //i.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
 
-        lanzarSelectorFotos.launch(i);
+
+        lanzadorSelectorFotos.launch(i);
     }
 
     private void abrirSelectorArchivoAudio() {
         final Uri tonoActual = RingtoneManager.getActualDefaultRingtoneUri(EditarCrearBoton.this, RingtoneManager.TYPE_ALARM);
         Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Seleccione un tono de alerta");
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, tonoActual);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
-        lanzarSelectorTonos.launch(intent);
+        lanzadorSelectorTonos.launch(intent);
 
     }
 
@@ -210,8 +288,6 @@ public class EditarCrearBoton extends AppCompatActivity {
                         // now change the picked color
                         // preview box to mDefaultColor
                         vistaPreviaColor.setBackgroundColor(colorDefecto);
-
-                        //TODO Asignar el color de fondo para la alerta
                     }
                 });
         colorPickerDialogue.show();

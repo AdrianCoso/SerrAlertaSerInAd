@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "SerrAlerta.db";
     public static  final String TABLE_BOTONES = "t_botones";
     private static DbHelper sInstance;
@@ -51,8 +51,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE "+TABLE_BOTONES);
-        onCreate(sqLiteDatabase);
+        //sqLiteDatabase.execSQL("DROP TABLE "+TABLE_BOTONES);
+        //onCreate(sqLiteDatabase);
     }
 
 

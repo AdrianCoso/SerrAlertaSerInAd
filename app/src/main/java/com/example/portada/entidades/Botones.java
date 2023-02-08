@@ -12,11 +12,12 @@ public class Botones {
     private String audio;
     private String activado;
 
-    public Botones(int numero, String texto, int color, String imagen, String activado) {
+    public Botones(int numero, String texto, int color, String imagen, String audio, String activado) {
         this.numero = numero;
         this.texto = texto;
         this.color = color;
         this.imagen = imagen;
+        this.audio = audio;
         this.activado = activado;
     }
 
