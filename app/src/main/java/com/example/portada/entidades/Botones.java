@@ -8,11 +8,11 @@ public class Botones {
     private int numero;
     private String texto;
     private int color;
-    private int imagen;
+    private String imagen;
     private String audio;
     private String activado;
 
-    public Botones(int numero, String texto, int color, int imagen, String audio, String activado) {
+    public Botones(int numero, String texto, int color, String imagen, String audio, String activado) {
         this.numero = numero;
         this.texto = texto;
         this.color = color;
@@ -57,11 +57,11 @@ public class Botones {
         this.color = color;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

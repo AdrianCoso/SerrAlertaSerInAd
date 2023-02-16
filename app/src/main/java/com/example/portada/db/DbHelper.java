@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "SerrAlerta.db";
     public static  final String TABLE_BOTONES = "t_botones";
     private static DbHelper sInstance;
@@ -41,7 +41,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "numero INTEGER NOT NULL,"+
                 "texto TEXT NOT NULL,"+
                 "color INTEGER NOT NULL,"+
-                "imagen INTEGER,"+
+                "imagen TEXT NOT NULL,"+
                 "audio TEXT NOT NULL,"+
                 "activado TEXT)");
 

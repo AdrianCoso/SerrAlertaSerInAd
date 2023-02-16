@@ -61,8 +61,8 @@ public class Adaptador extends BaseAdapter {
 
         titulo.setText(datos.get(i).getTexto());
         boton.setText("Botón: "+datos.get(i).getNumero());
-        int idImagen = datos.get(i).getImagen();
-        imagen.setImageResource(idImagen);
+        String rutaImagen = datos.get(i).getImagen();
+        imagen.setImageURI(Uri.parse(rutaImagen));
 
         color.setCardBackgroundColor(datos.get(i).getColor());
         cambio.setChecked(datos.get(i).getActivado().equals("activado"));

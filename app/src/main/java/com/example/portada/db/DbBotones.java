@@ -23,7 +23,7 @@ public class DbBotones extends DbHelper{
         this.context = context;
     }
 
-    public long insertarBoton(int numero, String texto, int color, int imagen, String audio){
+    public long insertarBoton(int numero, String texto, int color, String imagen, String audio){
         long id= 0;
         try{
             DbHelper dbHelper =  new DbHelper(context);
@@ -81,7 +81,7 @@ public class DbBotones extends DbHelper{
                 boton.setNumero(cursorBotones.getInt(1));
                 boton.setTexto(cursorBotones.getString(2));
                 boton.setColor(cursorBotones.getInt(3));
-                boton.setImagen(cursorBotones.getInt(4));
+                boton.setImagen(cursorBotones.getString(4));
                 boton.setAudio(cursorBotones.getString(5));
                 boton.setActivado(cursorBotones.getString(6));
                 listaBotones.add(boton);
@@ -104,7 +104,7 @@ public class DbBotones extends DbHelper{
             boton.setNumero(cursorBotones.getInt(1));
             boton.setTexto(cursorBotones.getString(2));
             boton.setColor(cursorBotones.getInt(3));
-            boton.setImagen(cursorBotones.getInt(4));
+            boton.setImagen(cursorBotones.getString(4));
             boton.setAudio(cursorBotones.getString(5));
             boton.setActivado(cursorBotones.getString(6));
 
@@ -113,7 +113,7 @@ public class DbBotones extends DbHelper{
         return boton;
     }
 
-    public int editarBoton(int id, int numero, String texto, int color, int imagen, String audio){
+    public int editarBoton(int id, int numero, String texto, int color, String imagen, String audio){
         int correcto = -1;
 
         DbHelper dbHelper =  new DbHelper(context);

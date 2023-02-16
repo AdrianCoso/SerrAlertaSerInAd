@@ -15,9 +15,6 @@
         android:theme="@style/Theme.Portada"
         tools:targetApi="31">
         <activity
-            android:name=".SelectorImagenes"
-            android:exported="false" />
-        <activity
             android:name=".EditarCrearBoton"
             android:exported="false" />
         <activity

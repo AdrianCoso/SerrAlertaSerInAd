@@ -62,7 +62,8 @@ public class EditarCrearBoton extends AppCompatActivity {
     String textoAlerta;
     String rutaTonoSeleccionado;
     int colorSeleccionado;
-    int idImagenSeleccionada;
+    String rutaImagenSeleccionada;
+    // int idImagenSeleccionada;
     Ringtone tonoSeleccionado;
 
 
@@ -107,7 +108,7 @@ public class EditarCrearBoton extends AppCompatActivity {
             botonCreado = new Botones(1,
                     "Alerta",
                     Color.CYAN,
-                    R.drawable.imagen1_nueva,
+                    "",
                     RingtoneManager.getActualDefaultRingtoneUri(EditarCrearBoton.this, RingtoneManager.TYPE_ALARM).toString(),
                     "activado");
         }
@@ -116,7 +117,7 @@ public class EditarCrearBoton extends AppCompatActivity {
         botonSeleccionado = botonCreado.getNumero();
         textoAlerta = botonCreado.getTexto();
         colorSeleccionado = botonCreado.getColor();
-        idImagenSeleccionada = botonCreado.getImagen();
+        rutaImagenSeleccionada = botonCreado.getImagen();
         rutaTonoSeleccionado = botonCreado.getAudio();
 
         // Inicializar los controles;
@@ -127,7 +128,7 @@ public class EditarCrearBoton extends AppCompatActivity {
         etTextoAlerta.setText(botonCreado.getTexto());
         colorDefecto = botonCreado.getColor();
         vistaPreviaColor.setBackgroundColor(botonCreado.getColor());
-        vistaPreviaPictoGrama.setImageResource(botonCreado.getImagen());
+        vistaPreviaPictoGrama.setImageURI(Uri.parse(rutaImagenSeleccionada));
         nombreTono.setText(RingtoneManager.getRingtone(EditarCrearBoton.this, Uri.parse(botonCreado.getAudio())).getTitle(EditarCrearBoton.this));
         if (idBoton == -1) { // Si el botón existe mostrar la opción de eliminarlo
             btnEliminar.setVisibility(View.INVISIBLE);
@@ -186,11 +187,11 @@ public class EditarCrearBoton extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK){
                         Intent data = result.getData();
                         //Realizamos la operación de cargar la imagen
-                        idImagenSeleccionada = data.getIntExtra("idImagen", R.drawable.imagen1_nueva);
-                        //getContentResolver().takePersistableUriPermission(uriImagenSeleccionada, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-
-
-                        vistaPreviaPictoGrama.setImageResource(idImagenSeleccionada);
+                        Uri uriImagenSeleccionada = data.getData();
+                        //idImagenSeleccionada = data.getIntExtra("idImagen", R.drawable.imagen1_nueva);
+                        getContentResolver().takePersistableUriPermission(uriImagenSeleccionada, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        rutaImagenSeleccionada = uriImagenSeleccionada.toString();
+                        vistaPreviaPictoGrama.setImageURI(uriImagenSeleccionada);
 
                     }
                 }
@@ -243,9 +244,9 @@ public class EditarCrearBoton extends AppCompatActivity {
 
         long id = -1;
         if (idBoton == -1) {
-            id = db.insertarBoton(botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto , idImagenSeleccionada, rutaTonoSeleccionado.toString());
+            id = db.insertarBoton(botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto , rutaImagenSeleccionada, rutaTonoSeleccionado.toString());
         } else {
-            id = db.editarBoton(idBoton, botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto, idImagenSeleccionada, rutaTonoSeleccionado.toString());
+            id = db.editarBoton(idBoton, botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto, rutaImagenSeleccionada, rutaTonoSeleccionado.toString());
         }
 
         if(id > 0 ){
@@ -261,7 +262,7 @@ public class EditarCrearBoton extends AppCompatActivity {
     private void abrirSelectorImagen() {
 
         //Creamos un intent de tipo imagen
-        Intent i = new Intent(EditarCrearBoton.this, SelectorImagenes.class);
+        Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
 
 
         lanzadorSelectorFotos.launch(i);
