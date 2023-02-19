@@ -6,4 +6,123 @@
     android:layout_height="match_parent"
     tools:context=".OtrasConfiguraciones">
 
+    <EditText
+        android:id="@+id/ptDuracion"
+        android:layout_width="296dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="DuracionAlerta"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ptNumeroBotones"
+        android:layout_width="298dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="NúmeroBotonesDisponibles"
+        android:inputType="number|textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ptDuracion" />
+
+    <EditText
+        android:id="@+id/ptConexionBluetooth"
+        android:layout_width="299dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="ConexionBluetooth"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ptNumeroBotones" />
+
+    <EditText
+        android:id="@+id/ptTipoAlerta"
+        android:layout_width="298dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="TipoAlerta"
+        android:inputType="textShortMessage|textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ptConexionBluetooth" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnObtener"
+        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnObtener"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/obtener"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="64dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/btnGuardar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="120dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/ptTipoAlerta"
+        app:layout_constraintVertical_bias="0.543" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="68dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/btnObtener"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="44dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ptTipoAlerta"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
