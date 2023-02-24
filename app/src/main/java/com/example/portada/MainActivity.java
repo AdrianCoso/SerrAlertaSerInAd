@@ -33,11 +33,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
        DbHelper dbHelper = DbHelper.getInstance(getApplicationContext());
        SQLiteDatabase db = dbHelper.getWritableDatabase();
-       if(db != null){
+       /*if(db != null){
            Toast.makeText(MainActivity.this,"BASE DE DATOS CREADA", Toast.LENGTH_LONG).show();
        } else{
            Toast.makeText(MainActivity.this,"NOOO!", Toast.LENGTH_LONG).show();
-       }
+       }*/
 
 
 

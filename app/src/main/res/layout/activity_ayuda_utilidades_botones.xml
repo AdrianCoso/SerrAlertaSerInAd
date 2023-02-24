@@ -20,9 +20,6 @@
             android:layout_alignParentBottom="true"
             android:text="Crear, editar y eliminar botones"
             android:textSize="20dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"/>
 
@@ -44,34 +41,23 @@
             android:layout_alignParentBottom="true"
             android:text="Para crear botones siga los siguientes pasos:"
             android:textSize="15dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="82dp"
             android:layout_marginLeft="15dp"/>
 
         <TextView
-            android:id="@+id/textView6"
             android:layout_width="368dp"
             android:layout_height="33dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:text="   1. Se abre la aplicación; seleccionar 'Mis botones'"
             android:textSize="15dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="102dp"
             android:layout_marginLeft="25dp"/>/>
 
         <ImageView
-            android:id="@+id/imageView2"
             android:layout_width="163dp"
             android:layout_height="283dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             app:srcCompat="@drawable/movil"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="98dp"
-            tools:layout_editor_absoluteY="140dp"
             android:layout_marginLeft="120dp"
             android:layout_marginBottom="20dp"/>
 
@@ -80,23 +66,93 @@
             android:layout_height="69dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:text="   2. Se abrirá el listado con los botones creados por el usuario, (puede que no halla ninguno creado). En cualquier caso se seleccionará 'Añadir nuevo botón'"
+            android:text="   2. Se muestra el listado con los botones creados por el usuario, (puede que no halla ninguno creado). En cualquier caso se seleccionará 'Añadir nuevo botón'"
             android:textSize="15dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="449dp"
             android:layout_marginLeft="25dp"/>
 
         <ImageView
-            android:id="@+id/imageView3"
             android:layout_width="156dp"
             android:layout_height="291dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             app:srcCompat="@drawable/movil2"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="113dp"
-            tools:layout_editor_absoluteY="489dp" />
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="382dp"
+            android:layout_height="22dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="25dp"
+            android:text="   3. Se rellena los campos y se pulsa el botón 'Guardar'"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:layout_width="156dp"
+            android:layout_height="291dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/movil3"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="20dp"
+            android:text="Se redirige al listado de los botones, donde se mostrará el nuevo botón"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:layout_width="156dp"
+            android:layout_height="291dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/movil4"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/textTituloModificar"
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="Modificar"
+            android:textSize="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="Para modificar botones siga los siguientes pasos:"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="   1. Elegir el botón que se desea modificar, pulsando el botón del lápiz"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:layout_width="156dp"
+            android:layout_height="291dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/movil5"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
 
 

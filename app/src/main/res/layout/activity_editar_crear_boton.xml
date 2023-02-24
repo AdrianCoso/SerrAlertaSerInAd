@@ -88,7 +88,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:text="@string/btn_seleccion_audio" />
+            android:backgroundTint="#A9B5E3"
+            android:text="@string/btn_seleccion_audio"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:strokeColor="#6376BF"
+            app:strokeWidth="4dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -119,7 +124,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:text="@string/btn_seleccion_color" />
+            android:backgroundTint="#D8ABE3"
+            android:text="@string/btn_seleccion_color"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:strokeColor="#B46AC5"
+            app:strokeWidth="4dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -150,8 +160,13 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
+            android:backgroundTint="#ECB87F"
             android:gravity="center"
-            android:text="@string/selecciona_pictograma" />
+            android:text="@string/selecciona_pictograma"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:strokeColor="#EA8A22"
+            app:strokeWidth="4dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -165,7 +180,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:text="@string/cancelar" />
+            android:backgroundTint="#E8A2E1"
+            android:text="@string/cancelar"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:strokeColor="#EF1DDA"
+            app:strokeWidth="4dp" />
 
         <Button
             android:id="@+id/btnGuardar"
@@ -173,13 +193,23 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:text="@string/guardar" />
+            android:backgroundTint="#ECEF9D"
+            android:text="@string/guardar"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:strokeColor="#E9EF2F"
+            app:strokeWidth="4dp" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btnEliminar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/eliminar_boton" />
+        android:backgroundTint="#E88EA0"
+        android:text="@string/eliminar_boton"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:strokeColor="#EF1D47"
+        app:strokeWidth="4dp" />
 
 </LinearLayout>
