@@ -21,7 +21,7 @@ public class OtrasConfiguraciones extends AppCompatActivity {
 
         //Inicializar los objetos
 
-        preferencias = getSharedPreferences(Preferencias.DATOS, Context.MODE_PRIVATE);
+       /* preferencias = getSharedPreferences(Preferencias.DATOS, Context.MODE_PRIVATE);
 
         Button btnGuardar = (Button) findViewById(R.id.btnGuardar);
 
@@ -69,7 +69,7 @@ public class OtrasConfiguraciones extends AppCompatActivity {
         });
 
 
-
+*/
 
         //Cuando pulsas el botón Obtener
 

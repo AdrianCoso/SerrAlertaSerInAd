@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textTitulo"
+        android:layout_width="246dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="139dp"
+        android:layout_marginBottom="558dp"
+        android:text="Menú de ayudas"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/imageViewSeparator"
+        android:layout_width="350dp"
+        android:layout_height="3dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="551dp"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_bright" />
+
+    <Button
+        android:id="@+id/btnCrearBoton"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="153dp"
+        android:layout_marginBottom="487dp"
+        android:backgroundTint="#EFC7D9"
+        android:text="Como crear / editar botones"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        app:strokeColor="#E6689F"
+        app:strokeWidth="4dp" />
+
+    <Button
+        android:id="@+id/btnDesactivarBoton"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="154dp"
+        android:layout_marginBottom="427dp"
+        android:backgroundTint="#C5C2EC"
+        android:text="Como activar / desactivar botones"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        app:strokeColor="#7068E6"
+        app:strokeWidth="4dp" />
+
+    <Button
+        android:id="@+id/btnMostrarAlertas"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="152dp"
+        android:layout_marginBottom="370dp"
+        android:backgroundTint="#BBE3BA"
+        android:text="Mostrar alertas"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        app:strokeColor="#6CE668"
+        app:strokeWidth="4dp" />
+
+    <Button
+        android:id="@+id/btnOtrasConfiguraciones"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="152dp"
+        android:layout_marginBottom="309dp"
+        android:backgroundTint="#E4CEBA"
+        android:text="Uso de otras configuraciones"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        app:strokeColor="#E6A368"
+        app:strokeWidth="4dp" />
+</RelativeLayout>
