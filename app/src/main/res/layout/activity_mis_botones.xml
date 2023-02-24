@@ -21,8 +21,13 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:backgroundTint="#DAFABE"
         android:clickable="true"
         android:contentDescription="@string/descripccion_fab_add_boton"
         android:gravity="center|center_horizontal"
-        android:text="@string/descripccion_fab_add_boton" />
+        android:text="@string/descripccion_fab_add_boton"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:strokeColor="#AAF16B"
+        app:strokeWidth="4dp" />
 </LinearLayout>

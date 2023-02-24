@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,5 +12,10 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/crear_boton" />
+        android:backgroundTint="#F4CFAE"
+        android:text="@string/crear_boton"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:strokeColor="#FAA257"
+        app:strokeWidth="4dp" />
 </LinearLayout>
