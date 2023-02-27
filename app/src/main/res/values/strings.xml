@@ -16,7 +16,7 @@
     <string name="lblSpinnerBotones">Selecciona un botón para asignar la alerta</string>
     <string name="cancelar">Cancelar</string>
     <string name="guardar">Guardar</string>
-    <string name="obtener">Obtener</string>
+    <string name="mirarinfo">Ver info</string>
     <string name="descripccion_fab_add_boton">Añadir nuevo botón</string>
     <string name="fondo">Fondo</string>
     <string name="eliminar_boton">Eliminar Botón</string>

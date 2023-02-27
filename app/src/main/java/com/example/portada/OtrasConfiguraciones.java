@@ -8,11 +8,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class OtrasConfiguraciones extends AppCompatActivity {
 
     SharedPreferences preferencias;
-    SharedPreferences.Editor editor;
+
+    SeekBar seekDuracion;
+
+    EditText ptNumeroBotones, ptConexionBluetooth, ptTipoAlerta;
+
+    Button btnGuardar, btnObtener;
+
+    TextView tvDuracion, tvBotonesDisponibles, tvConexionBluetooth, tvTipoAlerta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,57 +30,87 @@ public class OtrasConfiguraciones extends AppCompatActivity {
 
         //Inicializar los objetos
 
-       /* preferencias = getSharedPreferences(Preferencias.DATOS, Context.MODE_PRIVATE);
+        seekDuracion = (SeekBar) findViewById(R.id.seekDuracion);
 
-        Button btnGuardar = (Button) findViewById(R.id.btnGuardar);
+        ptNumeroBotones = (EditText) findViewById(R.id.ptNumeroBotones);
 
-        Button btnObtener = (Button) findViewById(R.id.btnObtener);
+        ptConexionBluetooth = (EditText) findViewById(R.id.ptConexionBluetooth);
 
-        EditText ptDuracion = (EditText) findViewById(R.id.ptDuracion);
+        ptTipoAlerta = (EditText) findViewById(R.id.ptTipoAlerta);
 
-        ptDuracion.setText(preferencias.getInt(Preferencias.DURACION,0)); //He puesto 0 por poner un número
+        btnGuardar = (Button) findViewById(R.id.btnGuardar);
 
-        EditText ptNumeroBotones = (EditText) findViewById(R.id.ptNumeroBotones);
+        btnObtener = (Button) findViewById(R.id.btnObtener);
 
-        ptNumeroBotones.setText(preferencias.getInt(Preferencias.NUMEROBOTONES,0));
+        tvDuracion = (TextView)  findViewById(R.id.tvDuracion);
 
-        EditText ptConexionBluetooth = (EditText) findViewById(R.id.ptConexionBluetooth);
+        tvBotonesDisponibles = (TextView) findViewById(R.id.ptNumeroBotones);
 
-        ptConexionBluetooth.setText(preferencias.getString(Preferencias.CONEXIONBLUETOOTH,""));
+        tvConexionBluetooth = (TextView) findViewById(R.id.ptConexionBluetooth);
 
-        EditText ptTipoAlerta = (EditText) findViewById(R.id.ptTipoAlerta);
+        tvTipoAlerta = (TextView) findViewById(R.id.ptTipoAlerta);
 
-        ptTipoAlerta.setText(preferencias.getString(Preferencias.TIPOALERTA,""));
+        preferencias = getSharedPreferences("DATOS", Context.MODE_PRIVATE);
 
         //Cuando pulsas el botón Guardar
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
 
+            @Override
             public void onClick(View v) {
 
-                preferencias = getSharedPreferences(Preferencias.DATOS, Context.MODE_PRIVATE);
-                editor = preferencias.edit();
+                int numeroBotones = Integer.parseInt(ptNumeroBotones.getText().toString().trim());
+                String conexionBluetooth = ptConexionBluetooth.getText().toString(); //NOMBRE DEL DISPOSITIVO
+                String tipoAlerta = ptTipoAlerta.getText().toString();
 
-                //Tiempo de duración
+                SharedPreferences.Editor editor = preferencias.edit();
 
-               // editor.putInt(Preferencias.DURACION, ptDuracion.getText().);
+                editor.putInt("NUMEROBOTONES", numeroBotones);
+                editor.putString("CONEXIONBLUETOOTH", conexionBluetooth);
+                editor.putString("TIPOALERTA", tipoAlerta);
 
-                //Número de botones
-
-                //Conexión Bluetooth
-
-                editor.putString(Preferencias.CONEXIONBLUETOOTH, ptConexionBluetooth.getText().toString());
-
-                //Tipo de alarma
-
-                editor.putString(Preferencias.TIPOALERTA, ptTipoAlerta.getText().toString());
+                editor.apply();
             }
         });
 
 
-*/
-
         //Cuando pulsas el botón Obtener
 
+        btnObtener.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                int numeroBotones = preferencias.getInt("NUMEROBOTONES", 0);
+                String conexionBluetooth = preferencias.getString("CONEXIONBLUETOOTH", "");
+                String tipoAlerta = preferencias.getString("TIPOALERTA", "");
+
+                tvBotonesDisponibles.setText("Botones disponibles: " + numeroBotones);
+                tvConexionBluetooth.setText("Dispositivo conectado: " + conexionBluetooth);
+                tvTipoAlerta.setText("Tipo de alerta: " + tipoAlerta);
+
+            }
+        });
+
+        tvDuracion.setText(" " + seekDuracion.getProgress()); //Pinta el textView para que se muestre el valor según se mueva el seekbar
+
+        seekDuracion.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+                //Indicar que se aumente el valor y se muestra en el seekbar
+
+                tvDuracion.setText("" + i);
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+      
     }
+
 }
