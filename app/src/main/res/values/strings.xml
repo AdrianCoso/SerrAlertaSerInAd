@@ -21,4 +21,6 @@
     <string name="fondo">Fondo</string>
     <string name="eliminar_boton">Eliminar Botón</string>
     <string name="toca_imagen_para_seleccionar">Toca una imagen para seleccionarla</string>
+    <string name="btn_ver_botones">Ver botones</string>
+    <string name="btn_cerrar_alerta">Cerrar</string>
 </resources>

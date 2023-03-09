@@ -11,9 +11,11 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.portada.MensajesBotonera;
 import com.example.portada.entidades.Botones;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DbBotones extends DbHelper{
 
@@ -153,6 +155,32 @@ public class DbBotones extends DbHelper{
         }
 
         return correcto;
+    }
+
+    public Botones obtenerBotonPorMensaje(String mensaje) {
+        // Encontrar el número que corresponde el botón según el mensaje que hayamos recibido usando el array de mensajes que se pueden recibir
+        Integer numeroBoton = MensajesBotonera.mapaBotones.get(mensaje);
+
+        DbHelper dbHelper =  new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Botones boton = new Botones();
+        Cursor cursorBotones = null;
+        cursorBotones = db.rawQuery("SELECT * FROM " + TABLE_BOTONES + " WHERE numero="+ String.valueOf(numeroBoton) +" AND activado = 'activado'", null);
+        if (cursorBotones.moveToFirst()){
+            boton.setId_boton(cursorBotones.getInt(0));
+            boton.setNumero(cursorBotones.getInt(1));
+            boton.setTexto(cursorBotones.getString(2));
+            boton.setColor(cursorBotones.getInt(3));
+            boton.setImagen(cursorBotones.getString(4));
+            boton.setAudio(cursorBotones.getString(5));
+
+        } else {
+            return null;
+        }
+        cursorBotones.close();
+        return boton;
+
     }
 
 }

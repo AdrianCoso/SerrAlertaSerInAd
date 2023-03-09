@@ -6,3 +6,12 @@ Una app para recibir alertas via bluetooth que facilitan la comunicación a pers
 - Número de botones disponiblies en la botonera
 - Conexión bluetooth
 - Tipo alerta (solo notificación con switch)
+
+
+## Pulir Alerta Activity
+- Reorganizar elementos y dimensionar imagen
+- Reproducir sonido
+
+## Mejorar BtService
+- Mostrar notificación con dispositivo bloqueado
+- Implementar método onStop para desconectar el bt con el botón correspondiente
