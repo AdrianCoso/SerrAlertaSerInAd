@@ -174,7 +174,8 @@ public class BtService extends Service {
                         Intent alerta = new Intent(getApplicationContext(), AlertaActivity.class);
                         alerta.putExtra("mensaje", botonPulsado.getTexto()).
                                 putExtra("imagen", botonPulsado.getImagen()).
-                                putExtra("color", botonPulsado.getColor());
+                                putExtra("color", botonPulsado.getColor()).
+                                putExtra("audio", botonPulsado.getAudio());
                         alerta.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(alerta);
                     }

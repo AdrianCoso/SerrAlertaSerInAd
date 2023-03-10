@@ -3,6 +3,8 @@ package com.example.portada;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +20,7 @@ public class AlertaActivity extends AppCompatActivity {
     TextView tvTextoAlerta;
     ImageView ivImagenAlerta;
     Button btnVerBotones, btnCerrar;
+    Ringtone tono;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +37,11 @@ public class AlertaActivity extends AppCompatActivity {
         String mensajeRecibido = intent.getStringExtra("mensaje");
         int colorRecibido = intent.getIntExtra("color", 0);
         String imagenRecibida = intent.getStringExtra("imagen");
+        String audioRecibido = intent.getStringExtra("audio");
 
-
+        //Reproducir el audio
+        tono = RingtoneManager.getRingtone(getApplicationContext(), Uri.parse(audioRecibido));
+        tono.play();
 
         // Establecer aspecto de las vistas según los atributos del botón pulsado
         tvTextoAlerta.setText(mensajeRecibido);
@@ -60,5 +66,11 @@ public class AlertaActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tono.stop();
     }
 }
