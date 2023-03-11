@@ -1,11 +1,9 @@
 package com.example.portada;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -15,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -51,7 +52,7 @@ public class ConfigBtActivity extends AppCompatActivity {
             nombresDispositivosEmparejados.add(dispositivo.getAddress());
         }
 
-        ArrayAdapter adaptadorSpinner = new ArrayAdapter(this, android.R.layout.simple_spinner_item, nombresDispositivosEmparejados);
+        ArrayAdapter<String> adaptadorSpinner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, nombresDispositivosEmparejados);
         spDispositivos.setAdapter(adaptadorSpinner);
 
         spDispositivos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -59,6 +60,7 @@ public class ConfigBtActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 direccionMAC = nombresDispositivosEmparejados.get(position);
+                getSharedPreferences("configuracion", Context.MODE_PRIVATE).edit().putString("direccionMAC", direccionMAC).apply();
                 BluetoothDevice dispositivoConectado = adaptadorBluetooth.getRemoteDevice(direccionMAC);
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
@@ -79,7 +81,7 @@ public class ConfigBtActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentServicioBt = new Intent(getApplicationContext(), BtService.class);
-                intentServicioBt.putExtra("direccionMAC", direccionMAC);
+//                intentServicioBt.putExtra("direccionMAC", direccionMAC);
 
                 startService(intentServicioBt);
             }

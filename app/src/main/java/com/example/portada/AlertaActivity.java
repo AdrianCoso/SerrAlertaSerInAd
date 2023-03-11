@@ -1,10 +1,6 @@
 package com.example.portada;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -12,15 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.portada.db.DbBotones;
-import com.example.portada.entidades.Botones;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AlertaActivity extends AppCompatActivity {
 
     TextView tvTextoAlerta;
     ImageView ivImagenAlerta;
     Button btnVerBotones, btnCerrar;
-    Ringtone tono;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,16 +26,11 @@ public class AlertaActivity extends AppCompatActivity {
         btnVerBotones = (Button) findViewById(R.id.btnVerBotones);
         btnCerrar = (Button) findViewById(R.id.btnCerrar);
 
-        // Obtenemos el intent que creó la alerta. Vendrá del servicio bt y tendrá como extra el string recibido
+        // Obtenener los datos de la alerta del intent que nos trae a la actividad
         Intent intent = getIntent();
         String mensajeRecibido = intent.getStringExtra("mensaje");
         int colorRecibido = intent.getIntExtra("color", 0);
         String imagenRecibida = intent.getStringExtra("imagen");
-        String audioRecibido = intent.getStringExtra("audio");
-
-        //Reproducir el audio
-        tono = RingtoneManager.getRingtone(getApplicationContext(), Uri.parse(audioRecibido));
-        tono.play();
 
         // Establecer aspecto de las vistas según los atributos del botón pulsado
         tvTextoAlerta.setText(mensajeRecibido);
@@ -58,6 +47,7 @@ public class AlertaActivity extends AppCompatActivity {
             }
         });
 
+        // Establecer el comportamiento del botón para cerrar la alerta
         btnCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +61,6 @@ public class AlertaActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        tono.stop();
+        //tono.stop();
     }
 }

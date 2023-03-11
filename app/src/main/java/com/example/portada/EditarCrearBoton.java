@@ -9,11 +9,16 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioAttributes;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -218,14 +223,7 @@ public class EditarCrearBoton extends AppCompatActivity {
         btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean correcto = db.eliminarBoton(idBoton);
-                if (correcto) {
-                    Intent intent = new Intent(EditarCrearBoton.this, MisBotones.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-
-                } else {
-                    Toast.makeText(EditarCrearBoton.this, "No se puede eliminar", Toast.LENGTH_LONG).show();
-                }
+                eliminarBoton();
             }
         });
 
@@ -240,13 +238,56 @@ public class EditarCrearBoton extends AppCompatActivity {
 
     }
 
+    private void eliminarBoton() {
+        boolean correcto = db.eliminarBoton(idBoton);
+        if (correcto) {
+            borrarCanalNotificacion(idBoton);
+            Intent intent = new Intent(EditarCrearBoton.this, MisBotones.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        } else {
+            Toast.makeText(EditarCrearBoton.this, "No se puede eliminar", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void borrarCanalNotificacion(long idBoton) {
+        String idCanal = new StringBuilder().append("canal_alerta_").append(String.valueOf(idBoton)).toString();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.deleteNotificationChannel(idCanal);
+    }
+
+    private void crearCanalNotificacion(long idBoton, String nombre) {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String CHANNEL_ID = new StringBuilder().append("canal_alerta_").append(String.valueOf(idBoton)).toString();
+            String descripcion = new StringBuilder().append("Notificaciones del botón ").append(nombre).toString();
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, nombre, importance);
+            channel.setDescription(descripcion);
+            channel.setSound(Uri.parse(rutaTonoSeleccionado), new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build());
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+
     private void guardarBoton() {
 
         long id = -1;
         if (idBoton == -1) {
             id = db.insertarBoton(botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto , rutaImagenSeleccionada, rutaTonoSeleccionado.toString());
+            crearCanalNotificacion(id, etTextoAlerta.getText().toString());
+
         } else {
             id = db.editarBoton(idBoton, botonSeleccionado, etTextoAlerta.getText().toString(), colorDefecto, rutaImagenSeleccionada, rutaTonoSeleccionado.toString());
+            borrarCanalNotificacion(idBoton);
+            crearCanalNotificacion(idBoton, etTextoAlerta.getText().toString());
         }
 
         if(id > 0 ){
