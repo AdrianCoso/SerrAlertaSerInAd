@@ -153,6 +153,118 @@
             app:srcCompat="@drawable/movil5"
             android:layout_marginLeft="120dp"
             android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="   2. Se muestra un listado con las características que tiene el botón, se modifica los cambios
+                pertinentes y se selecciona Guardar"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:layout_width="156dp"
+            android:layout_height="291dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/movil6"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="   3. Se redirige al listado de los botones donde ya se puede ver el botón modificado"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:layout_width="156dp"
+            android:layout_height="291dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/movil7"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/textTituloEliminar"
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="Eliminar"
+            android:textSize="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="Para eliminar botones siga los siguientes pasos:"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="   1. Elegir el botón que se desea eliminar, pulsando el botón del lápiz"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:layout_width="156dp"
+            android:layout_height="291dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/movil5"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="   2. Pulsar el boton que pone ELIMINAR BOTON"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:layout_width="156dp"
+            android:layout_height="291dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/movil8"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="   Se redirigirá al menú de los botones y podrá observar que el botón que quería eliminar no esta"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:layout_width="156dp"
+            android:layout_height="291dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/movil9"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
+
     </LinearLayout>
 
 

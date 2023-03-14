@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.portada.R;
 
-public class AyudaPrincipal extends AppCompatActivity {
+public class AyudaPrinci extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

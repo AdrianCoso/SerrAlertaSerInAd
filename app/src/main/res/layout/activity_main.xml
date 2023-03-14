@@ -55,11 +55,12 @@
         app:strokeColor="#C268E8"
         app:strokeWidth="4dp" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/btnInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:text="Ayuda"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="335dp"
         android:layout_marginBottom="43dp"

@@ -9,10 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.example.portada.ayuda.AyudaPrincipal;
+import com.example.portada.ayuda.AyudaPrinci;
 import com.example.portada.db.DbHelper;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -26,10 +25,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
        Button botonMisBotones = (Button)findViewById(R.id.button);
        botonMisBotones.setOnClickListener(this);
+       ImageButton informacion = (ImageButton) findViewById(R.id.btnInfo);
+       informacion.setOnClickListener(this);
        Button botonOtrasConfiguraciones = (Button)findViewById(R.id.button_2);
        botonOtrasConfiguraciones.setOnClickListener(this);
-       /*ImageButton informacion = (ImageButton) findViewById(R.id.imageInfo);
-       informacion.setOnClickListener(this);*/
+
+
 
        DbHelper dbHelper = DbHelper.getInstance(getApplicationContext());
        SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -76,10 +77,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void procesarEvento(int opc){
        switch(opc){
            case R.id.button:  startActivity(new Intent(MainActivity.this,MisBotones.class)); break;
-           //case R.id.button_2: startActivity(new Intent(MainActivity.this,OtrasConfiguraciones.class)); break;
-           case R.id.button_2: startActivity(new Intent(MainActivity.this,ConfigBtActivity.class)); break;
+           case R.id.button_2: startActivity(new Intent(MainActivity.this,OtrasConfiguraciones.class)); break;
+           //case R.id.button_2: startActivity(new Intent(MainActivity.this,ConfigBtActivity.class)); break;
 
-           /*case R.id.imageInfo: startActivity(new Intent(MainActivity.this, AyudaPrincipal.class));break;*/
+           case R.id.btnInfo: startActivity(new Intent(MainActivity.this, AyudaPrinci.class));break;
        }
     }
 
