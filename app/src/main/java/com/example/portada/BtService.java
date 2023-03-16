@@ -40,7 +40,7 @@ public class BtService extends Service {
         comprobarEstadoBt(adaptadorBt);
 
         // Crear el dispositivo y establecer su dirección MAC
-        String direccionMAC = getSharedPreferences("configuracion", Context.MODE_PRIVATE).getString("direccionMAC", "");
+        String direccionMAC = getSharedPreferences("DATOS", Context.MODE_PRIVATE).getString("direccionMAC", "");
         BluetoothDevice dispositivo;
         if (!direccionMAC.equals("")) {
             dispositivo = adaptadorBt.getRemoteDevice(direccionMAC);

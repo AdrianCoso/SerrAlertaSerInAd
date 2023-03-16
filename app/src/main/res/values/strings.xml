@@ -23,4 +23,6 @@
     <string name="toca_imagen_para_seleccionar">Toca una imagen para seleccionarla</string>
     <string name="btn_ver_botones">Ver botones</string>
     <string name="btn_cerrar_alerta">Cerrar</string>
+    <string name="conectar_bluetooth">Conectar bluetooth</string>
+    <string name="instrucciones_bt">Seleccione un dispositivo del desplegable para ver su nombre. Si no ecuentra el dispositivo deseado deberá enlazarlo en los ajustes del sistema</string>
 </resources>
