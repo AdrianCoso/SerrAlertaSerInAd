@@ -8,20 +8,25 @@
 
     <ImageView
         android:id="@+id/ivImagenAlertaMostrada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnVerBotones"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTextoAlertaMostrada"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvTextoAlertaMostrada"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/ivImagenAlertaMostrada"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,19 +35,18 @@
         android:id="@+id/btnVerBotones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="165dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/btn_ver_botones"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnCerrar"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnCerrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/btn_cerrar_alerta"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnVerBotones"
         app:layout_constraintEnd_toEndOf="parent" />

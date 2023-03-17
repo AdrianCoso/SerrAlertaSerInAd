@@ -60,7 +60,7 @@ public class ConfigBtActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 direccionMAC = nombresDispositivosEmparejados.get(position);
-                getSharedPreferences("configuracion", Context.MODE_PRIVATE).edit().putString("direccionMAC", direccionMAC).apply();
+                getSharedPreferences("DATOS", Context.MODE_PRIVATE).edit().putString("direccionMAC", direccionMAC).apply();
                 BluetoothDevice dispositivoConectado = adaptadorBluetooth.getRemoteDevice(direccionMAC);
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
@@ -81,9 +81,9 @@ public class ConfigBtActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentServicioBt = new Intent(getApplicationContext(), BtService.class);
-//                intentServicioBt.putExtra("direccionMAC", direccionMAC);
 
                 startService(intentServicioBt);
+
             }
         });
 

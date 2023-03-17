@@ -3,6 +3,7 @@ package com.example.portada;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +20,7 @@ public class OtrasConfiguraciones extends AppCompatActivity {
 
     EditText ptNumeroBotones, ptConexionBluetooth, ptTipoAlerta;
 
-    Button btnGuardar, btnObtener;
+    Button btnGuardar, btnObtener, conectarBluetoothBtn, configurarNotificacionesBtn;
 
     TextView tvDuracion, tvBotonesDisponibles, tvConexionBluetooth, tvTipoAlerta;
 
@@ -49,8 +50,11 @@ public class OtrasConfiguraciones extends AppCompatActivity {
         tvConexionBluetooth = (TextView) findViewById(R.id.ptConexionBluetooth);
 
         tvTipoAlerta = (TextView) findViewById(R.id.ptTipoAlerta);
+        conectarBluetoothBtn = (Button) findViewById(R.id.conectar_bluetooth_btn);
+        configurarNotificacionesBtn = (Button) findViewById(R.id.notificacion_config_btn);
 
         preferencias = getSharedPreferences("DATOS", Context.MODE_PRIVATE);
+
 
         //Cuando pulsas el botón Guardar
 
@@ -110,7 +114,25 @@ public class OtrasConfiguraciones extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-      
+
+        conectarBluetoothBtn.setOnClickListener(v -> {
+            Intent conexionBt = new Intent(this, ConfigBtActivity.class);
+            startActivity(conexionBt);
+
+        });
+
+        configurarNotificacionesBtn.setOnClickListener(v -> {
+            Intent configNotifiaciones = new Intent();
+            configNotifiaciones.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+            configNotifiaciones.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            configNotifiaciones.putExtra("android.provider.extra.APP_PACKAGE", getPackageName());
+            startActivity(configNotifiaciones);
+        });
     }
+
+    // Pulsar conectar bluetooth para elegir un dispositivo
+
+
 
 }
