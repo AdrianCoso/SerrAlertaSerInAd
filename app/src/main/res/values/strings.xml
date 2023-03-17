@@ -23,4 +23,8 @@
     <string name="toca_imagen_para_seleccionar">Toca una imagen para seleccionarla</string>
     <string name="btn_ver_botones">Ver botones</string>
     <string name="btn_cerrar_alerta">Cerrar</string>
+    <string name="ayuda_crear_editar_borrar">COMO CREAR/EDITAR/ELIMINAR BOTONES</string>
+    <string name="ayuda_activar_desactivar">COMO ACTIVAR/DESACTIVAR BOTONES</string>
+    <string name="ayuda_mostrarAlertas">MOSTRAR ALERTAS</string>
+    <string name="ayuda_otrasConfiguraciones">USO DE OTRAS CONFIGURACIONES</string>
 </resources>

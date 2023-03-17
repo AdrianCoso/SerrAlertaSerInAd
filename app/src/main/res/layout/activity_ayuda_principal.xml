@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textTitulo"
@@ -37,7 +35,7 @@
         android:layout_marginEnd="153dp"
         android:layout_marginBottom="487dp"
         android:backgroundTint="#EFC7D9"
-        android:text="Como crear / editar botones"
+        android:text="@string/ayuda_crear_editar_borrar"
         android:textColor="@color/black"
         android:textSize="10dp"
         app:strokeColor="#E6689F"
@@ -52,7 +50,7 @@
         android:layout_marginEnd="154dp"
         android:layout_marginBottom="427dp"
         android:backgroundTint="#C5C2EC"
-        android:text="Como activar / desactivar botones"
+        android:text="@string/ayuda_activar_desactivar"
         android:textColor="@color/black"
         android:textSize="10dp"
         app:strokeColor="#7068E6"
@@ -67,7 +65,7 @@
         android:layout_marginEnd="152dp"
         android:layout_marginBottom="370dp"
         android:backgroundTint="#BBE3BA"
-        android:text="Mostrar alertas"
+        android:text="@string/ayuda_mostrarAlertas"
         android:textColor="@color/black"
         android:textSize="10dp"
         app:strokeColor="#6CE668"
@@ -82,7 +80,7 @@
         android:layout_marginEnd="152dp"
         android:layout_marginBottom="309dp"
         android:backgroundTint="#E4CEBA"
-        android:text="Uso de otras configuraciones"
+        android:text="@string/ayuda_otrasConfiguraciones"
         android:textColor="@color/black"
         android:textSize="10dp"
         app:strokeColor="#E6A368"

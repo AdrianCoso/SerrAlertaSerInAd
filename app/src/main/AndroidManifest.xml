@@ -18,14 +18,28 @@
         android:theme="@style/Theme.Portada"
         tools:targetApi="31">
         <activity
-            android:name=".AyudaPrinci"
+            android:name=".ayuda.AyudaPrinci"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AyudaMostrarAlerta"
+            android:name=".ayuda.AyudaActivacionBotones"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ayuda.AyudaOtrasConfiguraciones"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ayuda.AyudaMostrarAlerta"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
