@@ -47,14 +47,14 @@
         android:id="@+id/ptTipoAlerta"
         android:layout_width="298dp"
         android:layout_height="51dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="TipoAlerta"
         android:inputType="textShortMessage|textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/conectar_bluetooth_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/notificacion_config_btn" />
 
     <Button
         android:id="@+id/btnGuardar"
@@ -133,5 +133,14 @@
         android:text="@string/conectar_bluetooth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ptConexionBluetooth" />
+
+    <Button
+        android:id="@+id/notificacion_config_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:text="@string/configurar_notificacones"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conectar_bluetooth_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
