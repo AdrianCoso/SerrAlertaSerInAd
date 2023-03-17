@@ -262,8 +262,9 @@ public class EditarCrearBoton extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String CHANNEL_ID = new StringBuilder().append("canal_alerta_").append(String.valueOf(idBoton)).toString();
             String descripcion = new StringBuilder().append("Notificaciones del botón ").append(nombre).toString();
+            String nombreCanal = new StringBuilder().append(botonSeleccionado).append(".-").append(nombre).toString();
             int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, nombre, importance);
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, nombreCanal, importance);
             channel.setDescription(descripcion);
             channel.setSound(Uri.parse(rutaTonoSeleccionado), new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_NOTIFICATION)
