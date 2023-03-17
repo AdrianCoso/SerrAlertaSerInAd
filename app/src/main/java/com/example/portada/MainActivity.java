@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
        Button botonMisBotones = (Button)findViewById(R.id.button);
        botonMisBotones.setOnClickListener(this);
-       ImageButton informacion = (ImageButton) findViewById(R.id.btnInfo);
+       ImageView informacion = (ImageView) findViewById(R.id.btnInfo);
        informacion.setOnClickListener(this);
        Button botonOtrasConfiguraciones = (Button)findViewById(R.id.button_2);
        botonOtrasConfiguraciones.setOnClickListener(this);

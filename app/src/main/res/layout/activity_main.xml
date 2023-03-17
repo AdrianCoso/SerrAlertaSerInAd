@@ -55,7 +55,7 @@
         app:strokeColor="#C268E8"
         app:strokeWidth="4dp" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
