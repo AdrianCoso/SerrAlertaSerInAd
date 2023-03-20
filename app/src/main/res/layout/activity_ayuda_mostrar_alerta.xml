@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ayuda.AyudaMostrarAlerta">
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textTitulo"
+            android:layout_width="355dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="Mostrar Alertas"
+            android:textSize="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="Cuando el usuario que requiera el uso de la botonera, necesite hacer uso de ella; simplemente pulsara el botón con el número/imagen de lo que necesite"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+        <ImageView
+            android:layout_width="163dp"
+            android:layout_height="283dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/movil15"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="Para ello deberá haber una alarma anteriormente creada"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:layout_width="175dp"
+            android:layout_height="151dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/movil16" />
+
+        <TextView
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="Una vez pulsado aparecerá la alerta"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp"/>
+        <ImageView
+            android:layout_width="163dp"
+            android:layout_height="283dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/movil17"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+
+</ScrollView>

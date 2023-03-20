@@ -29,18 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        informacion.setOnClickListener(this);
        Button botonOtrasConfiguraciones = (Button)findViewById(R.id.button_2);
        botonOtrasConfiguraciones.setOnClickListener(this);
-
-
+       Button prueba = (Button)findViewById(R.id.button2);
+       prueba.setOnClickListener(this);
 
        DbHelper dbHelper = DbHelper.getInstance(getApplicationContext());
        SQLiteDatabase db = dbHelper.getWritableDatabase();
-       /*if(db != null){
-           Toast.makeText(MainActivity.this,"BASE DE DATOS CREADA", Toast.LENGTH_LONG).show();
-       } else{
-           Toast.makeText(MainActivity.this,"NOOO!", Toast.LENGTH_LONG).show();
-       }*/
-
-
 
         int images[] = {R.drawable.imagen1_nueva, R.drawable.imagen2_nueva, R.drawable.imagen3_nueva, R.drawable.imagen4_nueva};
 
@@ -49,13 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for(int image: images){
             flipperImages(image);
         }
-        /*boton = (Button) findViewById(R.id.button);
-        boton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this,MisBotones.class));
-            }
-        });*/
+
+
     }
 
     public void flipperImages(int image){
@@ -81,6 +69,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            //case R.id.button_2: startActivity(new Intent(MainActivity.this,ConfigBtActivity.class)); break;
 
            case R.id.btnInfo: startActivity(new Intent(MainActivity.this, AyudaPrinci.class));break;
+           case R.id.button2:{
+
+               Intent pruebaIntent = new Intent(MainActivity.this,AlertaActivity.class);
+               pruebaIntent.putExtra("color", -16711681);
+               pruebaIntent.putExtra("mensaje", "Alerta1");
+               pruebaIntent.putExtra("imagen", "content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2Fkid.jpg");
+               startActivity(pruebaIntent);break;
+           }
        }
     }
 

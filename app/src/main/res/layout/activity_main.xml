@@ -10,6 +10,8 @@
         android:id="@+id/v_flipper"
         android:layout_width="match_parent"
         android:layout_height="750dp">
+
+
     </ViewFlipper>
 
     <TextView
@@ -66,5 +68,13 @@
         android:layout_marginBottom="43dp"
         app:srcCompat="@drawable/interrogante" />
 
-
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="317dp"
+        android:layout_marginBottom="555dp"
+        android:text="Button" />
 </RelativeLayout>

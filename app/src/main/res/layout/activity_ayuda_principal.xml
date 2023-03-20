@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ayuda.AyudaMostrarAlerta">
 
     <TextView
         android:id="@+id/textTitulo"
@@ -10,10 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="139dp"
-        android:layout_marginBottom="558dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginBottom="536dp"
         android:text="Menú de ayudas"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewSeparator"
@@ -21,10 +25,12 @@
         android:layout_height="3dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="551dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="532dp"
         android:scaleType="fitXY"
-        android:src="@android:drawable/divider_horizontal_bright" />
+        android:src="@android:drawable/divider_horizontal_bright"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnCrearBoton"
@@ -32,12 +38,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="153dp"
-        android:layout_marginBottom="487dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="324dp"
         android:backgroundTint="#EFC7D9"
         android:text="@string/ayuda_crear_editar_borrar"
         android:textColor="@color/black"
         android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:strokeColor="#E6689F"
         app:strokeWidth="4dp" />
 
@@ -47,12 +55,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="154dp"
-        android:layout_marginBottom="427dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="372dp"
         android:backgroundTint="#C5C2EC"
         android:text="@string/ayuda_activar_desactivar"
         android:textColor="@color/black"
         android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:strokeColor="#7068E6"
         app:strokeWidth="4dp" />
 
@@ -62,12 +72,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="152dp"
-        android:layout_marginBottom="370dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="420dp"
         android:backgroundTint="#BBE3BA"
         android:text="@string/ayuda_mostrarAlertas"
         android:textColor="@color/black"
         android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:strokeColor="#6CE668"
         app:strokeWidth="4dp" />
 
@@ -77,12 +89,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="152dp"
-        android:layout_marginBottom="309dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="476dp"
         android:backgroundTint="#E4CEBA"
         android:text="@string/ayuda_otrasConfiguraciones"
         android:textColor="@color/black"
         android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:strokeColor="#E6A368"
         app:strokeWidth="4dp" />
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
