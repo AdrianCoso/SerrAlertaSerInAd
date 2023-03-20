@@ -68,13 +68,4 @@
         android:layout_marginBottom="43dp"
         app:srcCompat="@drawable/interrogante" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="317dp"
-        android:layout_marginBottom="555dp"
-        android:text="Button" />
 </RelativeLayout>

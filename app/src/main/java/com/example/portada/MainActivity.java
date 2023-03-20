@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        informacion.setOnClickListener(this);
        Button botonOtrasConfiguraciones = (Button)findViewById(R.id.button_2);
        botonOtrasConfiguraciones.setOnClickListener(this);
-       Button prueba = (Button)findViewById(R.id.button2);
-       prueba.setOnClickListener(this);
+
 
        DbHelper dbHelper = DbHelper.getInstance(getApplicationContext());
        SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -66,17 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        switch(opc){
            case R.id.button:  startActivity(new Intent(MainActivity.this,MisBotones.class)); break;
            case R.id.button_2: startActivity(new Intent(MainActivity.this,OtrasConfiguraciones.class)); break;
-           //case R.id.button_2: startActivity(new Intent(MainActivity.this,ConfigBtActivity.class)); break;
-
            case R.id.btnInfo: startActivity(new Intent(MainActivity.this, AyudaPrinci.class));break;
-           case R.id.button2:{
-
-               Intent pruebaIntent = new Intent(MainActivity.this,AlertaActivity.class);
-               pruebaIntent.putExtra("color", -16711681);
-               pruebaIntent.putExtra("mensaje", "Alerta1");
-               pruebaIntent.putExtra("imagen", "content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2Fkid.jpg");
-               startActivity(pruebaIntent);break;
-           }
        }
     }
 
